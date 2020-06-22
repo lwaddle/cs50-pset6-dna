@@ -1,18 +1,17 @@
 from sys import argv
 from sys import exit
-import csv
+from dnacontroller import DNAController
 
 def main():
-    
-    # Old code    
-    # # Get the DNA string
-    # with open(argv[2]) as f:
-    #     dna_test_squence = f.read()        # Read the sequence
 
+    # This is the main test sequence like would be submitted to a crime lab
+    # Example: 'TAAGTTTAGAATATAAAAGGTGAGTTAAATAG'
     dna_test_sequence = get_dna_test_sequence()
 
-    # TODO
     # Create the DNAController object
+    dna_controller = DNAController()
+
+
 
 
 def check_args():
