@@ -11,8 +11,7 @@ def main():
     # Create the DNAController object
     dna_controller = DNAController()
 
-
-
+    # TODO Use controller to print result
 
 def check_args():
     if len(argv) != 3:
