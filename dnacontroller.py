@@ -2,7 +2,6 @@ from personofinterest import PersonOfInterest
 import csv
 
 class DNAController:
-    # TODO Finish the init function
     def __init__(self, data: list, dna_test_sequence: str):
         self.data = data                            # data converted from CSV reader object
         self.dna_test_sequence = dna_test_sequence  # Single DNA string
@@ -70,5 +69,6 @@ class DNAController:
         for person in self.people_of_interest:
             if person.str_values.items() == test_subject.items():
                 return person.name
-            # else:
-            #     return "No match."
+                break
+        
+        return "No match."
