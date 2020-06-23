@@ -16,9 +16,12 @@ def main():
 
     # Create the DNAController object
     dna_controller = DNAController(data, dna_test_sequence)
+    
+    # Populate the controller
     dna_controller.populate_people_of_interest()
-
-    # TODO Use controller to print result
+    
+    # Print result
+    print(dna_controller.match())
 
 def check_args():
     if len(argv) != 3:

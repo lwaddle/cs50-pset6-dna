@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["databases/large.csv", "sequences/1.txt"]
+            "args": ["databases/large.csv", "sequences/11.txt"]
         }
     ]
 }
