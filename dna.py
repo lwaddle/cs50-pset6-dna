@@ -1,6 +1,6 @@
 from sys import argv
 from sys import exit
-from csv import reader
+import csv
 from dnacontroller import DNAController
 
 def main():
@@ -8,14 +8,15 @@ def main():
     check_args()
 
     # Get database in csv format from crime lab
-    csv_data = get_csv_data()
+    data = convert_data()
 
     # Get main test sequence submitted from crime lab
-    # Example: 'TAAGTTTAGAATATAAAAGGTGAGTTAAATAG'
+    # Example: 'TAAGTTTGTGAGTTAAATAG'
     dna_test_sequence = get_dna_test_sequence()
 
     # Create the DNAController object
-    dna_controller = DNAController(csv_data, dna_test_sequence)
+    dna_controller = DNAController(data, dna_test_sequence)
+    dna_controller.populate_people_of_interest()
 
     # TODO Use controller to print result
 
@@ -28,11 +29,15 @@ def check_args():
     # Continue checking for more crieteria. Are the file types correct?
     # The DNAController object will further check for correct data stucture.
 
-def get_csv_data():
-    """Returns a csv reader object"""
-    with open(argv[1]) as f:
+def convert_data():
+    """Returns a list of the csv data"""
+    with open(argv[1], "r", newline='') as f:
         if f.readable():
-            return f.read()
+            data = []
+            for row in iter(csv.reader(f)):
+                data.append(row)
+            
+            return data
         else:
             print("Invalid csv file.")
             exit(1)
