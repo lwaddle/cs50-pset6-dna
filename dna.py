@@ -1,15 +1,21 @@
 from sys import argv
 from sys import exit
+from csv import reader
 from dnacontroller import DNAController
 
 def main():
+    # Check for valid command line args
+    check_args()
 
-    # This is the main test sequence like would be submitted to a crime lab
+    # Get database in csv format from crime lab
+    csv_data = get_csv_data()
+
+    # Get main test sequence submitted from crime lab
     # Example: 'TAAGTTTAGAATATAAAAGGTGAGTTAAATAG'
     dna_test_sequence = get_dna_test_sequence()
 
     # Create the DNAController object
-    dna_controller = DNAController()
+    dna_controller = DNAController(csv_data, dna_test_sequence)
 
     # TODO Use controller to print result
 
@@ -22,9 +28,16 @@ def check_args():
     # Continue checking for more crieteria. Are the file types correct?
     # The DNAController object will further check for correct data stucture.
 
-def get_dna_test_sequence():
+def get_csv_data():
+    """Returns a csv reader object"""
+    with open(argv[1]) as f:
+        if f.readable():
+            return f.read()
+        else:
+            print("Invalid csv file.")
+            exit(1)
 
-    check_args()
+def get_dna_test_sequence():
 
     with open(argv[2], "r", newline='') as f:
         if f.readable():
